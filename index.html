@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Plant App</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+
+    <nav class="nav">
+        <div onclick="showPlants()" class="navBtn">
+            Meine pflanzen
+        </div>
+        <div onclick="showForm(), hidePlants()" class="navBtn">pflanze hinzufügen</div>
+        <div onclick="" class="navBtn">
+            Pflanze Suchen
+        </div>
+        <div class="navBtn">
+            My Plant App
+        </div>
+        <img src="" alt="">
+    </nav>
+
+    <div class="input-div">
+        <input id="searchInput" type="text" placeholder="Pflanze suchen...">
+        <button onclick="searchPlant()">suchen</button>
+    </div>
+
+
+    <div id="plantDiv" class="plantDiv">
+    </div>
+
+
+
+    <form class="plant-form d-none" id="plantForm">
+
+        <div onclick="hideShowContent('plantForm', 'add')" class="x">
+            <svg id="mobileAboutMenuXImg" class="x-img" width="50" height="50" viewBox="0 0 50 50"
+                xmlns="http://www.w3.org/2000/svg">
+                <line x1="10" y1="10" x2="40" y2="40" stroke="white" stroke-width="8" stroke-linecap="round" />
+                <line x1="40" y1="10" x2="10" y2="40" stroke="white" stroke-width="8" stroke-linecap="round" />
+            </svg>
+        </div>
+
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="botanischerName">Botanischer Name:</label><br>
+        <input type="text" id="botanischerName" name="botanischerName"><br><br>
+
+        <label for="gegossenAm">Zuletzt gegossen am:</label><br>
+        <input type="date" id="gegossenAm" name="gegossenAm"><br><br>
+
+        <label for="bild">Bild (Datei oder URL):</label><br>
+        <input type="file" id="bild" name="bild" accept="image/*"><br><br>
+
+        <label for="gekauftAm">Gekauft am:</label><br>
+        <input type="date" id="gekauftAm" name="gekauftAm"><br><br>
+
+        <label for="notizen">Notizen:</label><br>
+        <textarea id="notizen" name="notizen" rows="4" cols="40"></textarea><br><br>
+
+        <label for="gruppe">Pflanzengruppe:</label><br>
+        <select id="gruppe" name="gruppe" required>
+            <option value="">-- bitte wählen --</option>
+            <option value="kaktus">Kaktus</option>
+            <option value="sukkulente">Sukkulente</option>
+            <option value="blume">Blume</option>
+            <option value="baum">Baum</option>
+        </select><br><br>
+
+        <button onclick="saveNewPlant()" type="submit">Speichern</button>
+    </form>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
