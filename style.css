@@ -2,7 +2,8 @@
 body {
     top: 0; left: 0;right: 0; bottom: 0;
     margin: 0;
-    background-color: rgb(119, 249, 119);
+    /*background-color: rgb(119, 249, 119);*/
+    background-color: rgb(119, 180, 249);
 }
 
 .d-none {
