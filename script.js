@@ -10,7 +10,8 @@ let plants = [
         "zuletzt_gegossen_am": "2025-04-28",
         "bild": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD...",
         "gekauft_am": "2023-05-15",
-        "notizen": "Steht im Wohnzimmer, keine direkte Sonne."
+        "notizen": "Steht im Wohnzimmer, keine direkte Sonne.",
+        "class":"baum"
     },
     {
         "id": "pflanze002",
@@ -19,19 +20,42 @@ let plants = [
         "zuletzt_gegossen_am": "2025-04-20",
         "bild": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD...",
         "gekauft_am": "2024-11-02",
-        "notizen": "Steht im Schlafzimmer, mag Halbschatten."
-    }
+        "notizen": "Steht im Schlafzimmer, mag Halbschatten.",
+        "class":"baum"
+    },
+    {
+        "id": "pflanze003",
+        "name": "Mexikanischer Cardon Kaktus",
+        "botanischer_name": "Pachycereus Pinglei",
+        "zuletzt_gegossen_am": "2025-03-19",
+        "bild": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD...",
+        "gekauft_am": "2022-01-22",
+        "notizen": "Steht uf dem Dachboden, mag volle Sonne.",
+        "class": "kaktus"
+    },
+    {
+        "id": "pflanze004",
+        "name": "Saguaro Kaktus",
+        "botanischer_name": "Saguaro Gigantea",
+        "zuletzt_gegossen_am": "2025-04-30",
+        "bild": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD...",
+        "gekauft_am": "2019-06-22",
+        "notizen": "Steht uf dem Dachboden, mag volle Sonne.",
+        "class": "kaktus"
+    },
 ];
 
 
 function showPlants() {
+    plants = JSON.parse(localStorage.getItem('plants')) || [];  //-- lädt die gespeicherten Pflanzen aus dem Speicher
     document.getElementById('plantDiv').innerHTML = ``;
     let plantDiv = document.getElementById('plantDiv');
 
     for (let i = 0; i < plants.length; i++) {
         const plant = plants[i];
         let plantElement = document.createElement('div');
-        plantElement.classList.add('plant'); // für CSS-Styling
+        plantElement.classList.add('plant'); //-- für CSS-Styling
+        let plantClass = plant.class;
 
         plantElement.innerHTML =  /*html*/ `
          <h2>${plant.name}</h2>
@@ -42,6 +66,15 @@ function showPlants() {
         <img src="${plant.bild}" alt="${plant.name}" />
         `;
         plantDiv.appendChild(plantElement);
+        addClass(plantClass, plantElement);
+    }
+}
+
+function addClass(plantClass, plantElement) {
+    if (plantClass === 'kaktus') {
+        plantElement.classList.add('cactus');
+    } if (plantClass === 'baum') {
+        plantElement.classList.add('tree');
     }
 }
 
@@ -54,7 +87,7 @@ function saveNewPlant() {
         //bild: reader.result || '', // Base64 oder leer
         gekauft_am: document.getElementById('gekauftAm').value,
         notizen: document.getElementById('notizen').value,
-        gruppe: document.getElementById('gruppe').value
+        class: document.getElementById('gruppe').value
     };
     plants.push(newPlant);
     localStorage.setItem('plants', JSON.stringify(plants));
