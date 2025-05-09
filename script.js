@@ -2,7 +2,7 @@
 
 
 
-let plants = [
+/*let plants = [
     {
         "id": "pflanze001",
         "name": "Monstera Deliciosa",
@@ -43,7 +43,9 @@ let plants = [
         "notizen": "Steht uf dem Dachboden, mag volle Sonne.",
         "class": "kaktus"
     },
+    
 ];
+*/
 
 
 function showPlants() {
