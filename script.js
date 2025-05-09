@@ -75,6 +75,19 @@ function showPlants() {
 
 const params = new URLSearchParams(window.location.search);
 const plantId = params.get('id');
+plants = JSON.parse(localStorage.getItem('plants')) || [];  //-- lädt die gespeicherten Pflanzen aus dem Speicher
+
+// Prüfen, ob eine ID in der URL steckt
+if (plantId) {
+    const plant = plants.find(p => p.id === plantId);
+    if (plant) {
+        showPlant(plant);
+    } else {
+        document.getElementById('plantDiv').innerHTML = '<p>Pflanze nicht gefunden.</p>';
+    }
+} else {
+    showPlants(); // wenn keine ID: alle anzeigen
+}
 
 function showPlant(plant) {
     plantClass = plant.class;
@@ -95,18 +108,6 @@ function showPlant(plant) {
 
     plantDiv.appendChild(plantElement);
     addClass(plantClass, plantElement);
-}
-
-// Prüfen, ob eine ID in der URL steckt
-if (plantId) {
-    const plant = plants.find(p => p.id === plantId);
-    if (plant) {
-        showPlant(plant);
-    } else {
-        document.getElementById('plantDiv').innerHTML = '<p>Pflanze nicht gefunden.</p>';
-    }
-} else {
-    showPlants(); // wenn keine ID: alle anzeigen
 }
 
 function addClass(plantClass, plantElement) {
