@@ -7,7 +7,7 @@
     <title>My Plant App</title>
 
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    
 </head>
 
 <body>
@@ -79,6 +79,9 @@
     </form>
 
 
+
+    <!-- Das Script muss erst am Ende der HTML-Datei sein, da es sonst beim Anzeigen der Detailansicht der Pflanzen zu einem Fehler kommt, da sonst das script verarbeitet wird, bevor dieHTML-Datei gelesen wurde und script.js auf HTML-Elemente zugreifen möchte, die noch gar nicht geladen wurden. -->
+    <script src="script.js"></script>
 </body>
 
 </html>

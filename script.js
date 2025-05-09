@@ -11,7 +11,7 @@ let plants = [
         "bild": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD...",
         "gekauft_am": "2023-05-15",
         "notizen": "Steht im Wohnzimmer, keine direkte Sonne.",
-        "class":"baum"
+        "class": "baum"
     },
     {
         "id": "pflanze002",
@@ -21,7 +21,7 @@ let plants = [
         "bild": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD...",
         "gekauft_am": "2024-11-02",
         "notizen": "Steht im Schlafzimmer, mag Halbschatten.",
-        "class":"baum"
+        "class": "baum"
     },
     {
         "id": "pflanze003",
@@ -64,10 +64,47 @@ function showPlants() {
         <p><strong>Gekauft am:</strong> ${plant.gekauft_am}</p>
         <p><strong>Notizen:</strong> ${plant.notizen}</p>
         <img src="${plant.bild}" alt="${plant.name}" />
+        <a onclick="showPLant(plant)" href="?id=${plant.id}">Zur Detailansicht</a>  
         `;
         plantDiv.appendChild(plantElement);
         addClass(plantClass, plantElement);
     }
+}
+
+const params = new URLSearchParams(window.location.search);
+const plantId = params.get('id');
+
+function showPlant(plant) {
+    plantClass = plant.class;
+    let plantDiv = document.getElementById('plantDiv');
+    //plantDiv.innerHTML = ''; // leeren
+
+    let plantElement = document.createElement('div');
+    plantElement.classList.add('plant');
+
+    plantElement.innerHTML = /*html*/ `
+        <h2>${plant.name}</h2>
+        <p><strong>Botanischer Name:</strong> ${plant.botanischer_name}</p>
+        <p><strong>Zuletzt gegossen:</strong> ${plant.zuletzt_gegossen_am}</p>
+        <p><strong>Gekauft am:</strong> ${plant.gekauft_am}</p>
+        <p><strong>Notizen:</strong> ${plant.notizen}</p>
+        <img src="${plant.bild}" alt="${plant.name}" />
+    `;
+
+    plantDiv.appendChild(plantElement);
+    addClass(plantClass, plantElement);
+}
+
+// Prüfen, ob eine ID in der URL steckt
+if (plantId) {
+    const plant = plants.find(p => p.id === plantId);
+    if (plant) {
+        showPlant(plant);
+    } else {
+        document.getElementById('plantDiv').innerHTML = '<p>Pflanze nicht gefunden.</p>';
+    }
+} else {
+    showPlants(); // wenn keine ID: alle anzeigen
 }
 
 function addClass(plantClass, plantElement) {
