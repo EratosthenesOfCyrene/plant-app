@@ -107,3 +107,9 @@ body {
 .tree {
     background-color: #88f019;;
 }
+
+.qr-code-plant-div {
+    width: 150px;
+    height: 150px;
+    background-color: aqua;
+}

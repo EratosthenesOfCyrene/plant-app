@@ -104,8 +104,17 @@ function showPlant(plant) {
         <p><strong>Gekauft am:</strong> ${plant.gekauft_am}</p>
         <p><strong>Notizen:</strong> ${plant.notizen}</p>
         <img src="${plant.bild}" alt="${plant.name}" />
+       
+        <div class="qr-code-plant-div" id="qrCodePlant${plant.id}"></div>
     `;
 
+    let qrButton = document.createElement('button');
+    qrButton.textContent = "QR-Code generieren";
+    qrButton.addEventListener('click', function () {
+        createQRCode(plant);
+    });
+
+    plantElement.appendChild(qrButton);
     plantDiv.appendChild(plantElement);
     addClass(plantClass, plantElement);
 }
@@ -116,6 +125,16 @@ function addClass(plantClass, plantElement) {
     } if (plantClass === 'baum') {
         plantElement.classList.add('tree');
     }
+}
+
+/*<button onclick="createQRCode(plant)">QR-Code generieren</button>*/
+
+function createQRCode(plant) {
+    new QRCode(document.getElementById(`qrCodePlant${plant.id}`), {
+        text: `https://eratosthenesofcyrene.github.io/plant-app/?id=${plant.id}`,
+        width: 128,
+        height: 128
+    });
 }
 
 function saveNewPlant() {
